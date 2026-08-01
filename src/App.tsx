@@ -235,10 +235,10 @@ export function App() {
             </div>
             <div>
               <h1 className="text-xl md:text-2xl font-serif tracking-wide font-bold gold-gradient-text drop-shadow">
-                ATELIER & BEWERBUNG HBK
+                DEUTSCHE KUNST
               </h1>
               <p className="text-[11px] text-zinc-400 font-light tracking-widest uppercase">
-                Portfolio HBK & Atelierverkäufe (geb. 1984)
+                Künstler-Archiv & Werkverzeichnis (geb. 1984)
               </p>
             </div>
           </div>
@@ -1221,7 +1221,7 @@ export function App() {
       <footer className="relative z-10 mt-20 border-t border-white/10 bg-zinc-950 py-10 px-6 text-xs text-zinc-400">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div>
-            <h4 className="font-serif font-bold text-amber-300 text-base">ATELIER & BEWERBUNG HBK</h4>
+            <h4 className="font-serif font-bold text-amber-300 text-base">DEUTSCHE KUNST</h4>
             <p className="text-zinc-500 text-xs mt-0.5">Deutscher Künstler (geb. 1984) &bull; HBK Mappedossier & Werkverzeichnis</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-zinc-400">

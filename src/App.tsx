@@ -39,47 +39,53 @@ import { ARTWORKS_DATA, type Artwork } from '@/data/artworks'
 import { ArtworkDetailPage } from '@/components/ArtworkDetailPage'
 import { DedicatedGallerySubpage } from '@/components/DedicatedGallerySubpage'
 
-// 5 Video Animations mapping directly to the 5 Galerie Categories
+// 6 Numbered Galleries mapping to exact user specifications
 const HERO_ANIMATION_PLAYLIST: {
   title: string
   url: string
-  category: 'lebenskunst' | 'portrait' | 'abstrakt' | 'anatomie' | 'epoxid'
+  category: 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'
   label: string
 }[] = [
   {
-    title: "1. Galerie: Lebenskunst 🌟",
+    title: "1. Öl & Acryl fertig auf Leinwand 🎨",
+    url: "/artworks/glam_video_magic.MP4",
+    category: "oel-acryl",
+    label: "Fertig vollendete Leinwandgemälde"
+  },
+  {
+    title: "2. Lebenskunst Signatur 🌟",
     url: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4",
     category: "lebenskunst",
-    label: "Signatur-Serie (24k Blattgold & Eichenholz)"
+    label: "24k Blattgold, Eichenholz & Lasur"
   },
   {
-    title: "2. Galerie: Öl-Portrait 🎨",
-    url: "/artworks/glam_video_magic.MP4",
-    category: "portrait",
-    label: "Chiaroscuro Licht- & Schattenmalerei"
-  },
-  {
-    title: "3. Galerie: Abstrakt 💫",
-    url: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4",
-    category: "abstrakt",
-    label: "Blender 3D-Farben Konflikt"
-  },
-  {
-    title: "4. Galerie: Anatomie ✏️",
+    title: "3. Skizzen & Anatomie ✏️",
     url: "/artworks/Clip2Comic-2024-09-09-14-50-27.MP4",
     category: "anatomie",
-    label: "Original Handzeichnungen & Rötel"
+    label: "Handzeichnungen (A4 / A3 Mappen)"
   },
   {
-    title: "5. Galerie: Epoxidharz 🌊",
+    title: "4. Digitale Künste 💻",
+    url: "/artworks/2D96E6D8-5A37-41E1-B049-974A0D558076.mp4",
+    category: "digitalkunst",
+    label: "Digital Painting, KI & Concept Art"
+  },
+  {
+    title: "5. Resin Art (Werke zum Verkauf) 🌊",
     url: "/artworks/IMG_0244.MP4",
     category: "epoxid",
-    label: "Resin Flow & Meerespigmente"
+    label: "Resin Art Epoxidharz (Zum Verkauf)"
+  },
+  {
+    title: "6. Animationen, 3D & Unreal Engine 🎬",
+    url: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4",
+    category: "animationen",
+    label: "3D Motion, Blender & Realtime 3D"
   }
 ]
 
 export function App() {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'portrait' | 'abstrakt' | 'anatomie' | 'lebenskunst' | 'epoxid'>('all')
+  const [activeCategory, setActiveCategory] = useState<'all' | 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null)
   const [viewingSubpage, setViewingSubpage] = useState<Artwork | null>(null)
@@ -87,7 +93,7 @@ export function App() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
   const [showFrames, setShowFrames] = useState(false)
   const [copiedIntegration, setCopiedIntegration] = useState(false)
-  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-lebenskunst' | 'galerie-portrait' | 'galerie-abstrakt' | 'galerie-anatomie' | 'galerie-epoxid' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
+  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-oel-acryl' | 'galerie-lebenskunst' | 'galerie-anatomie' | 'galerie-digitalkunst' | 'galerie-epoxid' | 'galerie-animationen' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
   
   // Video Playlist Auto-Rotation State (Rotates every 45 seconds)
   const [videoIndex, setVideoIndex] = useState(0)
@@ -357,61 +363,66 @@ export function App() {
       <div className="sticky top-[73px] z-30 bg-zinc-950/90 backdrop-blur-md border-b border-white/10 px-6 py-2">
         <div className="max-w-7xl mx-auto flex items-center justify-between overflow-x-auto gap-2 text-xs font-semibold scrollbar-none py-1">
           <span className="text-amber-400/90 font-mono text-[10px] uppercase tracking-widest whitespace-nowrap mr-1 flex items-center gap-1">
-            <Sparkles className="w-3 h-3" /> Galerien:
+            <Sparkles className="w-3 h-3" /> Galerie-Unterseiten (1 - 6):
           </span>
 
+          {/* Galerie 1 */}
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-oel-acryl')
+              setVideoIndex(0)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-oel-acryl' ? 'bg-rose-500 text-white font-bold shadow-lg shadow-rose-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-rose-500/20'
+            }`}
+          >
+            <span>🎨 No. 1 Öl & Acryl auf Leinwand</span>
+          </button>
+
+          {/* Galerie 2 */}
           <button
             onClick={() => {
               closeSubpage()
               setActiveTab('galerie-lebenskunst')
-              setVideoIndex(0)
+              setVideoIndex(1)
             }}
             className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
               activeTab === 'galerie-lebenskunst' ? 'bg-amber-400 text-zinc-950 font-bold shadow-lg shadow-amber-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-amber-500/20'
             }`}
           >
-            <span>🌟 Unterseite Lebenskunst</span>
+            <span>🌟 No. 2 Lebenskunst Signatur</span>
           </button>
 
-          <button
-            onClick={() => {
-              closeSubpage()
-              setActiveTab('galerie-portrait')
-              setVideoIndex(1)
-            }}
-            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'galerie-portrait' ? 'bg-pink-500 text-white font-bold shadow-lg shadow-pink-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-pink-500/20'
-            }`}
-          >
-            <span>🎨 Unterseite Öl-Portrait</span>
-          </button>
-
-          <button
-            onClick={() => {
-              closeSubpage()
-              setActiveTab('galerie-abstrakt')
-              setVideoIndex(2)
-            }}
-            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'galerie-abstrakt' ? 'bg-purple-500 text-white font-bold shadow-lg shadow-purple-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-purple-500/20'
-            }`}
-          >
-            <span>💫 Unterseite Abstrakt</span>
-          </button>
-
+          {/* Galerie 3 */}
           <button
             onClick={() => {
               closeSubpage()
               setActiveTab('galerie-anatomie')
+              setVideoIndex(2)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-anatomie' ? 'bg-stone-300 text-zinc-950 font-bold shadow-lg shadow-stone-300/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-stone-500/20'
+            }`}
+          >
+            <span>✏️ No. 3 Skizzen & Anatomie</span>
+          </button>
+
+          {/* Galerie 4 */}
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-digitalkunst')
               setVideoIndex(3)
             }}
             className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'galerie-anatomie' ? 'bg-slate-300 text-zinc-950 font-bold shadow-lg shadow-slate-300/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-slate-500/20'
+              activeTab === 'galerie-digitalkunst' ? 'bg-purple-500 text-white font-bold shadow-lg shadow-purple-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-purple-500/20'
             }`}
           >
-            <span>✏️ Unterseite Anatomie</span>
+            <span>💻 No. 4 Digitale Künste</span>
           </button>
 
+          {/* Galerie 5 */}
           <button
             onClick={() => {
               closeSubpage()
@@ -419,10 +430,24 @@ export function App() {
               setVideoIndex(4)
             }}
             className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
-              activeTab === 'galerie-epoxid' ? 'bg-cyan-500 text-zinc-950 font-bold shadow-lg shadow-cyan-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-cyan-500/20'
+              activeTab === 'galerie-epoxid' ? 'bg-emerald-400 text-zinc-950 font-bold shadow-lg shadow-emerald-400/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-emerald-500/20'
             }`}
           >
-            <span>🌊 Unterseite Epoxidharz</span>
+            <span>🌊 No. 5 Resin Art (Zum Verkauf)</span>
+          </button>
+
+          {/* Galerie 6 */}
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-animationen')
+              setVideoIndex(5)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-animationen' ? 'bg-blue-500 text-white font-bold shadow-lg shadow-blue-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-blue-500/20'
+            }`}
+          >
+            <span>🎬 No. 6 Animationen & 3D (Unreal)</span>
           </button>
         </div>
       </div>
@@ -893,34 +918,40 @@ export function App() {
                           Alle Archivwerke ({ARTWORKS_DATA.length})
                         </button>
                         <button
+                          onClick={() => setActiveCategory('oel-acryl')}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'oel-acryl' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                        >
+                          No. 1 Öl & Acryl
+                        </button>
+                        <button
                           onClick={() => setActiveCategory('lebenskunst')}
                           className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'lebenskunst' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
-                          Lebenskunst (Signatur)
-                        </button>
-                        <button
-                          onClick={() => setActiveCategory('portrait')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'portrait' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
-                        >
-                          Öl-Portraitmalerei
-                        </button>
-                        <button
-                          onClick={() => setActiveCategory('abstrakt')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'abstrakt' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
-                        >
-                          Abstrakte Malerei
+                          No. 2 Lebenskunst
                         </button>
                         <button
                           onClick={() => setActiveCategory('anatomie')}
                           className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'anatomie' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
-                          Anatomie-Skizzen
+                          No. 3 Skizzen & Anatomie
+                        </button>
+                        <button
+                          onClick={() => setActiveCategory('digitalkunst')}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'digitalkunst' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                        >
+                          No. 4 Digitale Künste
                         </button>
                         <button
                           onClick={() => setActiveCategory('epoxid')}
                           className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'epoxid' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
-                          Epoxidharz & Resin
+                          No. 5 Resin Art (Verkauf)
+                        </button>
+                        <button
+                          onClick={() => setActiveCategory('animationen')}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'animationen' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                        >
+                          No. 6 Animationen & 3D
                         </button>
                       </div>
 
@@ -1077,28 +1108,19 @@ export function App() {
               </section>
             )}
 
-            {/* DEDICATED SUBPAGES FOR EACH GALLERY */}
+            {/* DEDICATED SUBPAGES FOR ALL 6 NUMBERED GALLERIES */}
+            {activeTab === 'galerie-oel-acryl' && (
+              <DedicatedGallerySubpage
+                category="oel-acryl"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
             {activeTab === 'galerie-lebenskunst' && (
               <DedicatedGallerySubpage
                 category="lebenskunst"
-                artworks={ARTWORKS_DATA}
-                onSelectArtwork={(art) => openSubpage(art)}
-                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
-              />
-            )}
-
-            {activeTab === 'galerie-portrait' && (
-              <DedicatedGallerySubpage
-                category="portrait"
-                artworks={ARTWORKS_DATA}
-                onSelectArtwork={(art) => openSubpage(art)}
-                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
-              />
-            )}
-
-            {activeTab === 'galerie-abstrakt' && (
-              <DedicatedGallerySubpage
-                category="abstrakt"
                 artworks={ARTWORKS_DATA}
                 onSelectArtwork={(art) => openSubpage(art)}
                 onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
@@ -1114,9 +1136,27 @@ export function App() {
               />
             )}
 
+            {activeTab === 'galerie-digitalkunst' && (
+              <DedicatedGallerySubpage
+                category="digitalkunst"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
             {activeTab === 'galerie-epoxid' && (
               <DedicatedGallerySubpage
                 category="epoxid"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
+            {activeTab === 'galerie-animationen' && (
+              <DedicatedGallerySubpage
+                category="animationen"
                 artworks={ARTWORKS_DATA}
                 onSelectArtwork={(art) => openSubpage(art)}
                 onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}

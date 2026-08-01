@@ -5,17 +5,37 @@ import { ArrowRight, ShoppingBag, CheckCircle, Sparkles } from 'lucide-react'
 import type { Artwork } from '@/data/artworks'
 
 interface DedicatedGallerySubpageProps {
-  category: 'lebenskunst' | 'portrait' | 'abstrakt' | 'anatomie' | 'epoxid'
+  category: 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'
   artworks: Artwork[]
   onSelectArtwork: (artwork: Artwork) => void
   onOpenInquiry: (artwork: Artwork) => void
 }
 
 const THEMES = {
+  'oel-acryl': {
+    title: "Galerie No. 1 – Öl & Acryl auf Leinwand",
+    subtitle: "Fertig ausgearbeitete Originale auf Schichtleinen",
+    badge: "Galerie N° 1 &bull; Fertige Gemälde",
+    themeBg: "bg-gradient-to-br from-rose-950 via-zinc-950 to-amber-950/40",
+    bannerBorder: "border-rose-500/50 shadow-rose-950/60",
+    accentColor: "text-rose-400",
+    gradientText: "bg-gradient-to-r from-rose-200 via-amber-300 to-rose-400 bg-clip-text text-transparent",
+    cardBorder: "border-rose-500/30 hover:border-rose-400",
+    cardBg: "bg-rose-950/30 backdrop-blur-md",
+    btnStyle: "bg-rose-500 text-white hover:bg-rose-400 font-bold",
+    tagBg: "bg-rose-500/20 text-rose-300 border-rose-500/40",
+    description: "Fertig vollendete Originalgemälde in altmeisterlicher Öl- und Acrylschichttechnik auf feiner belgischer Schwerleinwand.",
+    stats: [
+      { label: "Medium", val: "Öl & Acryl auf Leinen" },
+      { label: "Zustand", val: "Vollendet & Firnisiert" },
+      { label: "Rahmung", val: "Atelier-Schattenfuge" }
+    ],
+    videoSrc: "/artworks/glam_video_magic.MP4"
+  },
   lebenskunst: {
-    title: "Galerie Lebenskunst",
+    title: "Galerie No. 2 – Lebenskunst Signatur",
     subtitle: "24k Blattgold & Eichenholz-Objekte",
-    badge: "Signatur-Serie N° 1",
+    badge: "Galerie N° 2 &bull; Signatur-Serie",
     themeBg: "bg-gradient-to-br from-amber-950 via-zinc-950 to-amber-900/40",
     bannerBorder: "border-amber-500/50 shadow-amber-950/60",
     accentColor: "text-amber-400",
@@ -32,50 +52,10 @@ const THEMES = {
     ],
     videoSrc: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4"
   },
-  portrait: {
-    title: "Galerie Öl-Portraitmalerei",
-    subtitle: "Altmeisterliches Chiaroscuro & Lichtstudien",
-    badge: "Klassische Öl-Kollektion",
-    themeBg: "bg-gradient-to-br from-rose-950 via-zinc-950 to-red-950/40",
-    bannerBorder: "border-rose-500/50 shadow-rose-950/60",
-    accentColor: "text-rose-400",
-    gradientText: "bg-gradient-to-r from-rose-200 via-rose-400 to-red-500 bg-clip-text text-transparent",
-    cardBorder: "border-rose-500/30 hover:border-rose-400",
-    cardBg: "bg-rose-950/30 backdrop-blur-md",
-    btnStyle: "bg-rose-500 text-white hover:bg-rose-400 font-bold",
-    tagBg: "bg-rose-500/20 text-rose-300 border-rose-500/40",
-    description: "Ausdrucksstarke Portraitmalerei auf feiner belgischer Leinwand. Fokus auf Lichtführung und emotionale Tiefe.",
-    stats: [
-      { label: "Technik", val: "Öl auf Leinwand" },
-      { label: "Stil", val: "Chiaroscuro (Licht/Schatten)" },
-      { label: "Schutz", val: "Museums-Firnis" }
-    ],
-    videoSrc: "/artworks/glam_video_magic.MP4"
-  },
-  abstrakt: {
-    title: "Galerie Abstrakte Malerei",
-    subtitle: "3D Blender Animationen & Farb-Konflikte",
-    badge: "Digitale & Analoge Synthese",
-    themeBg: "bg-gradient-to-br from-purple-950 via-zinc-950 to-indigo-950/40",
-    bannerBorder: "border-purple-500/50 shadow-purple-950/60",
-    accentColor: "text-purple-400",
-    gradientText: "bg-gradient-to-r from-purple-200 via-purple-400 to-indigo-400 bg-clip-text text-transparent",
-    cardBorder: "border-purple-500/30 hover:border-purple-400",
-    cardBg: "bg-purple-950/30 backdrop-blur-md",
-    btnStyle: "bg-purple-500 text-white hover:bg-purple-400 font-bold",
-    tagBg: "bg-purple-500/20 text-purple-300 border-purple-500/40",
-    description: "Explosive Farbkompositionen zwischen digitaler 3D-Simulation und analogem Schichtauftrag.",
-    stats: [
-      { label: "Simulation", val: "Blender 3D Motion" },
-      { label: "Medium", val: "Mischtechnik & Acryl" },
-      { label: "Format", val: "Großformat-Leinwand" }
-    ],
-    videoSrc: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4"
-  },
   anatomie: {
-    title: "Galerie Anatomie-Skizzen",
-    subtitle: "Rötel, Sepia & Büttenpapier (A4 / A3)",
-    badge: "Mappenkollektion HBK",
+    title: "Galerie No. 3 – Skizzen & Anatomie",
+    subtitle: "Rötel, Sepia & Büttenpapier (A4 / A3 Mappen)",
+    badge: "Galerie N° 3 &bull; Mappenwerke A4/A3",
     themeBg: "bg-gradient-to-br from-stone-900 via-zinc-950 to-neutral-900",
     bannerBorder: "border-stone-400/50 shadow-stone-950/60",
     accentColor: "text-stone-300",
@@ -84,7 +64,7 @@ const THEMES = {
     cardBg: "bg-stone-950/40 backdrop-blur-md",
     btnStyle: "bg-stone-300 text-zinc-950 hover:bg-white font-bold",
     tagBg: "bg-stone-500/20 text-stone-300 border-stone-400/40",
-    description: "Klassische Proportions- und Gestenstudien nach dem lebenden Modell. Auf säurefreiem 300g Hahnemühle Büttenpapier.",
+    description: "Klassische Proportions- und Anatomiestudien nach dem lebenden Modell auf 300g Hahnemühle Büttenpapier aus den Google Drive Galerien.",
     stats: [
       { label: "Papier", val: "300g Hahnemühle Bütten" },
       { label: "Stift", val: "Rötel & Sepia-Kohle" },
@@ -92,25 +72,65 @@ const THEMES = {
     ],
     videoSrc: "/artworks/Clip2Comic-2024-09-09-14-50-27.MP4"
   },
-  epoxid: {
-    title: "Galerie Epoxidharz & Resin",
-    subtitle: "Harzwellen, Pigmente & Naturholz",
-    badge: "Fluid Ocean Series",
-    themeBg: "bg-gradient-to-br from-cyan-950 via-zinc-950 to-teal-950/40",
-    bannerBorder: "border-cyan-500/50 shadow-cyan-950/60",
-    accentColor: "text-cyan-400",
-    gradientText: "bg-gradient-to-r from-cyan-200 via-cyan-400 to-teal-300 bg-clip-text text-transparent",
-    cardBorder: "border-cyan-500/30 hover:border-cyan-400",
-    cardBg: "bg-cyan-950/30 backdrop-blur-md",
-    btnStyle: "bg-cyan-500 text-zinc-950 hover:bg-cyan-400 font-bold",
-    tagBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
-    description: "Kristallklare Glanzgüsse mit flüssigen Pigmentströmen auf edlen Hölzern. UV-beständig veredelt.",
+  digitalkunst: {
+    title: "Galerie No. 4 – Digitale Künste",
+    subtitle: "Digital Painting, Concept Art & KI-Synthese",
+    badge: "Galerie N° 4 &bull; Digital & Concepts",
+    themeBg: "bg-gradient-to-br from-purple-950 via-zinc-950 to-indigo-950/40",
+    bannerBorder: "border-purple-500/50 shadow-purple-950/60",
+    accentColor: "text-purple-400",
+    gradientText: "bg-gradient-to-r from-purple-200 via-purple-400 to-indigo-400 bg-clip-text text-transparent",
+    cardBorder: "border-purple-500/30 hover:border-purple-400",
+    cardBg: "bg-purple-950/30 backdrop-blur-md",
+    btnStyle: "bg-purple-500 text-white hover:bg-purple-400 font-bold",
+    tagBg: "bg-purple-500/20 text-purple-300 border-purple-500/40",
+    description: "Zeitgenössische digitale Kunstwerke, virtuelle Entwürfe und KI-gestützte Vektor-Kompositionen.",
     stats: [
-      { label: "Harz", val: "UV-Resin Kristallguss" },
-      { label: "Holz", val: "Akazie & Nussbaum" },
-      { label: "Effekt", val: "Tiefe Fluid-Zellen" }
+      { label: "Workflow", val: "Digital Painting & KI" },
+      { label: "Print", val: "Canson FineArt Rag" },
+      { label: "Edition", val: "Limitiert & Signiert" }
+    ],
+    videoSrc: "/artworks/2D96E6D8-5A37-41E1-B049-974A0D558076.mp4"
+  },
+  epoxid: {
+    title: "Galerie No. 5 – Resin Art (Werke zum Verkauf)",
+    subtitle: "Kristallklarer Glanzguss, Meerespigmente & Massivholz",
+    badge: "Galerie N° 5 &bull; Zum Verkauf Verfügbar",
+    themeBg: "bg-gradient-to-br from-emerald-950 via-zinc-950 to-teal-950/40",
+    bannerBorder: "border-emerald-500/50 shadow-emerald-950/60",
+    accentColor: "text-emerald-400",
+    gradientText: "bg-gradient-to-r from-emerald-200 via-teal-300 to-cyan-400 bg-clip-text text-transparent",
+    cardBorder: "border-emerald-500/30 hover:border-emerald-400",
+    cardBg: "bg-emerald-950/30 backdrop-blur-md",
+    btnStyle: "bg-emerald-400 text-zinc-950 hover:bg-emerald-300 font-bold",
+    tagBg: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+    description: "Exklusive Resin Art Einzelstücke direkt aus dem Atelier zum Verkauf verfügbar. Veredelt mit UV-Schutzharz und edlen Meeresfarbpigmenten.",
+    stats: [
+      { label: "Status", val: "Sofort Kaufbar & Versand" },
+      { label: "Harz", val: "UV-Kristallharz Guss" },
+      { label: "Holz", val: "Akazie & Massivholz" }
     ],
     videoSrc: "/artworks/IMG_0244.MP4"
+  },
+  animationen: {
+    title: "Galerie No. 6 – Animationen, 3D & Unreal Engine",
+    subtitle: "Bewegte 3D-Simulationen, Blender Renderings & Realtime Environments",
+    badge: "Galerie N° 6 &bull; 3D & Unreal Engine",
+    themeBg: "bg-gradient-to-br from-blue-950 via-zinc-950 to-sky-950/40",
+    bannerBorder: "border-blue-500/50 shadow-blue-950/60",
+    accentColor: "text-blue-400",
+    gradientText: "bg-gradient-to-r from-blue-200 via-sky-400 to-cyan-300 bg-clip-text text-transparent",
+    cardBorder: "border-blue-500/30 hover:border-blue-400",
+    cardBg: "bg-blue-950/30 backdrop-blur-md",
+    btnStyle: "bg-blue-500 text-white hover:bg-blue-400 font-bold",
+    tagBg: "bg-blue-500/20 text-blue-300 border-blue-500/40",
+    description: "Freie 3D-Partikelanimationen, Motion Graphics aus Blender und interaktive 3D-Umgebungen in Unreal Engine.",
+    stats: [
+      { label: "Engine", val: "Unreal Engine & Blender" },
+      { label: "Render", val: "4K Motion Loops" },
+      { label: "Format", val: "Realtime 3D Shader" }
+    ],
+    videoSrc: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4"
   }
 }
 

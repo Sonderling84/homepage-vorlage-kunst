@@ -37,6 +37,7 @@ import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
 import { AsciiPixelFilter } from '@/components/ui/ascii-pixel-filter'
 import { ARTWORKS_DATA, type Artwork } from '@/data/artworks'
 import { ArtworkDetailPage } from '@/components/ArtworkDetailPage'
+import { DedicatedGallerySubpage } from '@/components/DedicatedGallerySubpage'
 
 // 5 Video Animations mapping directly to the 5 Galerie Categories
 const HERO_ANIMATION_PLAYLIST: {
@@ -86,7 +87,7 @@ export function App() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
   const [showFrames, setShowFrames] = useState(false)
   const [copiedIntegration, setCopiedIntegration] = useState(false)
-  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
+  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-lebenskunst' | 'galerie-portrait' | 'galerie-abstrakt' | 'galerie-anatomie' | 'galerie-epoxid' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
   
   // Video Playlist Auto-Rotation State (Rotates every 45 seconds)
   const [videoIndex, setVideoIndex] = useState(0)
@@ -351,6 +352,80 @@ export function App() {
           </div>
         </div>
       </nav>
+
+      {/* Gallery Subpages Dedicated Navigation Bar */}
+      <div className="sticky top-[73px] z-30 bg-zinc-950/90 backdrop-blur-md border-b border-white/10 px-6 py-2">
+        <div className="max-w-7xl mx-auto flex items-center justify-between overflow-x-auto gap-2 text-xs font-semibold scrollbar-none py-1">
+          <span className="text-amber-400/90 font-mono text-[10px] uppercase tracking-widest whitespace-nowrap mr-1 flex items-center gap-1">
+            <Sparkles className="w-3 h-3" /> Galerien:
+          </span>
+
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-lebenskunst')
+              setVideoIndex(0)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-lebenskunst' ? 'bg-amber-400 text-zinc-950 font-bold shadow-lg shadow-amber-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-amber-500/20'
+            }`}
+          >
+            <span>🌟 Unterseite Lebenskunst</span>
+          </button>
+
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-portrait')
+              setVideoIndex(1)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-portrait' ? 'bg-pink-500 text-white font-bold shadow-lg shadow-pink-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-pink-500/20'
+            }`}
+          >
+            <span>🎨 Unterseite Öl-Portrait</span>
+          </button>
+
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-abstrakt')
+              setVideoIndex(2)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-abstrakt' ? 'bg-purple-500 text-white font-bold shadow-lg shadow-purple-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-purple-500/20'
+            }`}
+          >
+            <span>💫 Unterseite Abstrakt</span>
+          </button>
+
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-anatomie')
+              setVideoIndex(3)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-anatomie' ? 'bg-slate-300 text-zinc-950 font-bold shadow-lg shadow-slate-300/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-slate-500/20'
+            }`}
+          >
+            <span>✏️ Unterseite Anatomie</span>
+          </button>
+
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-epoxid')
+              setVideoIndex(4)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-epoxid' ? 'bg-cyan-500 text-zinc-950 font-bold shadow-lg shadow-cyan-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-cyan-500/20'
+            }`}
+          >
+            <span>🌊 Unterseite Epoxidharz</span>
+          </button>
+        </div>
+      </div>
 
       {/* Main Content Area */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -1000,6 +1075,52 @@ export function App() {
                   </button>
                 </div>
               </section>
+            )}
+
+            {/* DEDICATED SUBPAGES FOR EACH GALLERY */}
+            {activeTab === 'galerie-lebenskunst' && (
+              <DedicatedGallerySubpage
+                category="lebenskunst"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
+            {activeTab === 'galerie-portrait' && (
+              <DedicatedGallerySubpage
+                category="portrait"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
+            {activeTab === 'galerie-abstrakt' && (
+              <DedicatedGallerySubpage
+                category="abstrakt"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
+            {activeTab === 'galerie-anatomie' && (
+              <DedicatedGallerySubpage
+                category="anatomie"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
+            {activeTab === 'galerie-epoxid' && (
+              <DedicatedGallerySubpage
+                category="epoxid"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
             )}
 
             {/* TAB 3: AUFTRAGSARBEITEN */}

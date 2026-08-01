@@ -38,15 +38,43 @@ import { AsciiPixelFilter } from '@/components/ui/ascii-pixel-filter'
 import { ARTWORKS_DATA, type Artwork } from '@/data/artworks'
 import { ArtworkDetailPage } from '@/components/ArtworkDetailPage'
 
-// Playlist of user animation MP4 videos from Google Drive & Animationen folder
-const HERO_ANIMATION_PLAYLIST = [
-  { title: "Animation 1 (Trimmed)", url: "/artworks/3b4df56d-3b7c-4c3b-adb8-a4e7afb54a25-u1_trimmed.MP4" },
-  { title: "Farben Konflikt (Blender)", url: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4" },
-  { title: "Glam Magic", url: "/artworks/glam_video_magic.MP4" },
-  { title: "Startseite Loop", url: "/artworks/Startseite.mp4" },
-  { title: "Clip2Comic", url: "/artworks/Clip2Comic-2024-09-09-14-50-27.MP4" },
-  { title: "Chrome Content Motion", url: "/artworks/2D96E6D8-5A37-41E1-B049-974A0D558076.mp4" },
-  { title: "Resin Flow", url: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4" }
+// 5 Video Animations mapping directly to the 5 Galerie Categories
+const HERO_ANIMATION_PLAYLIST: {
+  title: string
+  url: string
+  category: 'lebenskunst' | 'portrait' | 'abstrakt' | 'anatomie' | 'epoxid'
+  label: string
+}[] = [
+  {
+    title: "1. Galerie: Lebenskunst 🌟",
+    url: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4",
+    category: "lebenskunst",
+    label: "Signatur-Serie (24k Blattgold & Eichenholz)"
+  },
+  {
+    title: "2. Galerie: Öl-Portrait 🎨",
+    url: "/artworks/glam_video_magic.MP4",
+    category: "portrait",
+    label: "Chiaroscuro Licht- & Schattenmalerei"
+  },
+  {
+    title: "3. Galerie: Abstrakt 💫",
+    url: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4",
+    category: "abstrakt",
+    label: "Blender 3D-Farben Konflikt"
+  },
+  {
+    title: "4. Galerie: Anatomie ✏️",
+    url: "/artworks/Clip2Comic-2024-09-09-14-50-27.MP4",
+    category: "anatomie",
+    label: "Original Handzeichnungen & Rötel"
+  },
+  {
+    title: "5. Galerie: Epoxidharz 🌊",
+    url: "/artworks/IMG_0244.MP4",
+    category: "epoxid",
+    label: "Resin Flow & Meerespigmente"
+  }
 ]
 
 export function App() {
@@ -69,6 +97,12 @@ export function App() {
 
   // Retro ASCII & Pixel Filter Effect State ('none' | 'ascii' | 'pixel' | 'matrix')
   const [filterMode, setFilterMode] = useState<'none' | 'ascii' | 'pixel' | 'matrix'>('none')
+
+  const selectAnimationGallery = (idx: number) => {
+    setVideoIndex(idx)
+    setIsAutoRotate(false)
+    setActiveCategory(HERO_ANIMATION_PLAYLIST[idx].category)
+  }
 
   // 45-second automatic video rotation timer
   useEffect(() => {
@@ -723,16 +757,14 @@ export function App() {
                         </button>
                       </div>
 
-                      {/* Video Selector Pills */}
-                      <div className="flex flex-wrap items-center gap-1 text-[11px] bg-blue-900/60 p-1 rounded-xl border border-blue-400/30">
+                      {/* Video Selector Pills mapping directly to 5 Galleries */}
+                      <div className="flex flex-wrap items-center gap-1.5 text-[11px] bg-blue-900/60 p-1.5 rounded-xl border border-blue-400/40">
+                        <span className="text-blue-300 font-mono font-bold text-[10px] ml-1 uppercase">Direkt zu Galerie:</span>
                         {HERO_ANIMATION_PLAYLIST.map((item, idx) => (
                           <button
                             key={item.url}
-                            onClick={() => {
-                              setVideoIndex(idx)
-                              setIsAutoRotate(false)
-                            }}
-                            className={`px-2.5 py-1 rounded-lg transition-all ${videoIndex === idx ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white bg-blue-950/40'}`}
+                            onClick={() => selectAnimationGallery(idx)}
+                            className={`px-3 py-1 rounded-lg transition-all ${videoIndex === idx ? 'bg-blue-500 text-white font-bold shadow-lg shadow-blue-500/50 scale-105' : 'text-blue-200 hover:text-white bg-blue-950/60 hover:bg-blue-900/80 border border-blue-500/20'}`}
                           >
                             {item.title}
                           </button>

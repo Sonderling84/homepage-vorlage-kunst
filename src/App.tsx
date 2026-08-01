@@ -39,11 +39,11 @@ import { ARTWORKS_DATA, type Artwork } from '@/data/artworks'
 import { ArtworkDetailPage } from '@/components/ArtworkDetailPage'
 import { DedicatedGallerySubpage } from '@/components/DedicatedGallerySubpage'
 
-// 6 Numbered Galleries mapping to exact user specifications
+// 7 Numbered Galleries mapping to exact user specifications
 const HERO_ANIMATION_PLAYLIST: {
   title: string
   url: string
-  category: 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'
+  category: 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen' | 'handwerk'
   label: string
 }[] = [
   {
@@ -81,11 +81,17 @@ const HERO_ANIMATION_PLAYLIST: {
     url: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4",
     category: "animationen",
     label: "3D Motion, Blender & Realtime 3D"
+  },
+  {
+    title: "7. Handwerkliche Kunst & Gesellenstück 🪵",
+    url: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4",
+    category: "handwerk",
+    label: "Traditionelle Meister-Schreinerei"
   }
 ]
 
 export function App() {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'>('all')
+  const [activeCategory, setActiveCategory] = useState<'all' | 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen' | 'handwerk'>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null)
   const [viewingSubpage, setViewingSubpage] = useState<Artwork | null>(null)
@@ -93,7 +99,7 @@ export function App() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
   const [showFrames, setShowFrames] = useState(false)
   const [copiedIntegration, setCopiedIntegration] = useState(false)
-  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-oel-acryl' | 'galerie-lebenskunst' | 'galerie-anatomie' | 'galerie-digitalkunst' | 'galerie-epoxid' | 'galerie-animationen' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
+  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-oel-acryl' | 'galerie-lebenskunst' | 'galerie-anatomie' | 'galerie-digitalkunst' | 'galerie-epoxid' | 'galerie-animationen' | 'galerie-handwerk' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
   
   // Video Playlist Auto-Rotation State (Rotates every 45 seconds)
   const [videoIndex, setVideoIndex] = useState(0)
@@ -447,7 +453,21 @@ export function App() {
               activeTab === 'galerie-animationen' ? 'bg-blue-500 text-white font-bold shadow-lg shadow-blue-500/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-blue-500/20'
             }`}
           >
-            <span>🎬 No. 6 Animationen & 3D (Unreal)</span>
+            <span>🎬 No. 6 Animationen & 3D</span>
+          </button>
+
+          {/* Galerie 7 */}
+          <button
+            onClick={() => {
+              closeSubpage()
+              setActiveTab('galerie-handwerk')
+              setVideoIndex(6)
+            }}
+            className={`px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              activeTab === 'galerie-handwerk' ? 'bg-amber-600 text-white font-bold shadow-lg shadow-amber-600/30' : 'bg-zinc-900/80 text-zinc-300 hover:text-white border border-amber-600/20'
+            }`}
+          >
+            <span>🪵 No. 7 Handwerk & Gesellenstück</span>
           </button>
         </div>
       </div>
@@ -1157,6 +1177,15 @@ export function App() {
             {activeTab === 'galerie-animationen' && (
               <DedicatedGallerySubpage
                 category="animationen"
+                artworks={ARTWORKS_DATA}
+                onSelectArtwork={(art) => openSubpage(art)}
+                onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
+              />
+            )}
+
+            {activeTab === 'galerie-handwerk' && (
+              <DedicatedGallerySubpage
+                category="handwerk"
                 artworks={ARTWORKS_DATA}
                 onSelectArtwork={(art) => openSubpage(art)}
                 onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}

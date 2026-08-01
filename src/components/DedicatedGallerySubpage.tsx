@@ -5,7 +5,7 @@ import { ArrowRight, ShoppingBag, CheckCircle, Sparkles } from 'lucide-react'
 import type { Artwork } from '@/data/artworks'
 
 interface DedicatedGallerySubpageProps {
-  category: 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'
+  category: 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen' | 'handwerk'
   artworks: Artwork[]
   onSelectArtwork: (artwork: Artwork) => void
   onOpenInquiry: (artwork: Artwork) => void
@@ -131,6 +131,26 @@ const THEMES = {
       { label: "Format", val: "Realtime 3D Shader" }
     ],
     videoSrc: "/artworks/FERTIGE_ANIMATION_Farben_Konflikt.mp4"
+  },
+  handwerk: {
+    title: "Galerie No. 7 – Handwerkliche Kunst & Gesellenstück",
+    subtitle: "Traditionelle Meister-Schreinerei, Massivholz & Holzverbindungen",
+    badge: "Galerie N° 7 &bull; Handwerk & Gesellenstück",
+    themeBg: "bg-gradient-to-br from-amber-950 via-stone-950 to-orange-950/40",
+    bannerBorder: "border-amber-600/50 shadow-amber-950/60",
+    accentColor: "text-amber-500",
+    gradientText: "bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 bg-clip-text text-transparent",
+    cardBorder: "border-amber-600/30 hover:border-amber-400",
+    cardBg: "bg-amber-950/40 backdrop-blur-md",
+    btnStyle: "bg-amber-600 text-white hover:bg-amber-500 font-bold",
+    tagBg: "bg-amber-600/20 text-amber-300 border-amber-500/40",
+    description: "Handwerkliche Präzisionskunst, Zinken- & Zapfenverbindungen in Eichenholz, Meister-Schreinerei und das offizielle Gesellenstück.",
+    stats: [
+      { label: "Holzart", val: "Massive Eiche & Walnuss" },
+      { label: "Verbindung", val: "Handgezinkt & Eingepasst" },
+      { label: "Qualität", val: "Offizielles Gesellenstück" }
+    ],
+    videoSrc: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4"
   }
 }
 

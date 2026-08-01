@@ -1,4 +1,4 @@
-export type ArtworkCategory = 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen'
+export type ArtworkCategory = 'oel-acryl' | 'lebenskunst' | 'anatomie' | 'digitalkunst' | 'epoxid' | 'animationen' | 'handwerk'
 
 export interface Artwork {
   id: number
@@ -207,6 +207,27 @@ export const ARTWORKS_DATA: Artwork[] = [
     careInstructions: "Echtzeit-Render.",
     provenance: "Serie 3D & Unreal Engine.",
     defaultPos: { x: 8, y: 8, w: 4, h: 4 },
+    mediaSize: 1
+  },
+  {
+    id: 10,
+    wvNr: "WV-2026-020",
+    title: "Das Gesellenstück – Handwerkliche Kunst & Schreinerei",
+    category: "handwerk",
+    medium: "Massives Eichenholz, Walnuss-Inlays & traditionelle Holzverbindungen",
+    year: "2026",
+    dimensions: "160 x 85 x 45 cm",
+    price: "Unverkäufliches Meisterstück / Ausstellungsstück",
+    status: "In Privatsammlung",
+    location: "Atelier Handwerks-Archiv",
+    image: "/artworks/gold_leaf_canvas_1784989991003.png",
+    video: "/artworks/copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4",
+    description: "Meisterhaftes Gesellenstück & handwerkliche Holzbearbeitung. Galerie No. 7 Handwerkliche Kunst & Gesellenstück.",
+    certificate: true,
+    shipping: "Ausstellungsexponat",
+    careInstructions: "Mit Spezial-Bienenwachs gepflegt.",
+    provenance: "Offizielles Gesellenstück & Handwerksprüfung.",
+    defaultPos: { x: 0, y: 12, w: 4, h: 4 },
     mediaSize: 1
   }
 ]

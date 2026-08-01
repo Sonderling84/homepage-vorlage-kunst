@@ -483,81 +483,9 @@ export function App() {
 
             {/* TAB 1 & ARCHIVE: GALLERY & CATALOGUE */}
             {(activeTab === 'gallery' || activeTab === 'archive') && (
-              <section className="space-y-8">
-                {/* Full-bleed Hero Area floating over sweeping background video */}
-                <div className="py-6 space-y-6">
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-300 text-xs uppercase tracking-widest font-semibold backdrop-blur-md">
-                      <RotateCw className="w-3.5 h-3.5 animate-spin text-amber-400" />
-                      <span>Auto-Rotation alle 45 Sek. ({videoIndex + 1}/{HERO_ANIMATION_PLAYLIST.length})</span>
-                    </div>
-
-                    {/* Brightness Control Toggle & Video Selector */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      {/* Brightness Mode Pills */}
-                      <div className="flex items-center gap-1 text-[11px] bg-zinc-950/90 backdrop-blur-md p-1 rounded-xl border border-amber-500/30">
-                        <Sun className="w-3.5 h-3.5 text-amber-400 ml-1.5" />
-                        <button
-                          onClick={() => setBackgroundMode('ultra')}
-                          className={`px-2.5 py-0.5 rounded-lg transition-all ${backgroundMode === 'ultra' ? 'bg-amber-400 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
-                        >
-                          Extrem Hell ☀️
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMode('vibrant')}
-                          className={`px-2.5 py-0.5 rounded-lg transition-all ${backgroundMode === 'vibrant' ? 'bg-amber-400 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
-                        >
-                          Leuchtend ✨
-                        </button>
-                      </div>
-
-                      {/* Retro ASCII & Pixel Filter Pills */}
-                      <div className="flex items-center gap-1 text-[11px] bg-zinc-950/90 backdrop-blur-md p-1 rounded-xl border border-amber-500/30">
-                        <span className="text-amber-400 font-mono font-bold text-[10px] ml-1.5 uppercase">Effekt:</span>
-                        <button
-                          onClick={() => setFilterMode('none')}
-                          className={`px-2.5 py-0.5 rounded-lg transition-all ${filterMode === 'none' ? 'bg-amber-400 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
-                        >
-                          HD Video 🎬
-                        </button>
-                        <button
-                          onClick={() => setFilterMode('ascii')}
-                          className={`px-2.5 py-0.5 rounded-lg transition-all ${filterMode === 'ascii' ? 'bg-amber-400 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
-                        >
-                          ASCII Art 🔤
-                        </button>
-                        <button
-                          onClick={() => setFilterMode('pixel')}
-                          className={`px-2.5 py-0.5 rounded-lg transition-all ${filterMode === 'pixel' ? 'bg-amber-400 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
-                        >
-                          Pixel 8-Bit 👾
-                        </button>
-                        <button
-                          onClick={() => setFilterMode('matrix')}
-                          className={`px-2.5 py-0.5 rounded-lg transition-all ${filterMode === 'matrix' ? 'bg-amber-400 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
-                        >
-                          Matrix ⚡
-                        </button>
-                      </div>
-
-                      {/* Video Selector Buttons with active indicator */}
-                      <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-zinc-400 bg-zinc-950/80 backdrop-blur-md p-1.5 rounded-xl border border-white/10">
-                        {HERO_ANIMATION_PLAYLIST.map((item, idx) => (
-                          <button
-                            key={item.url}
-                            onClick={() => {
-                              setVideoIndex(idx)
-                              setIsAutoRotate(false)
-                            }}
-                            className={`px-3 py-1 rounded-lg transition-all ${videoIndex === idx ? 'bg-amber-400 text-zinc-950 font-bold shadow-md' : 'hover:text-white bg-zinc-900/80'}`}
-                          >
-                            {item.title}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
+              <section className="space-y-12">
+                {/* Full-bleed Hero Title & Social Media Header */}
+                <div className="py-4 space-y-6">
                   <div className="max-w-3xl space-y-4">
                     <h2 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight drop-shadow-xl">
                       Vollständiges Künstlerarchiv
@@ -635,28 +563,207 @@ export function App() {
                   </div>
                 </div>
 
-                {/* SECTION 1: INTERAKTIVER KUNST-RASTER (VIRTUELLE ATELIERWAND) */}
-                <div className="space-y-4">
+                {/* SECTION 01: "LEBENSKUNST" MANIFEST & MATERIALFORSCHUNG (SPECIAL GOLD HIGHLIGHT) */}
+                <div className="my-8 bg-gradient-to-r from-amber-950/40 via-zinc-950 to-amber-900/20 border border-amber-500/40 p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 blur-3xl pointer-events-none rounded-full" />
+                  
+                  <div className="relative z-10 space-y-4 max-w-3xl">
+                    <span className="text-amber-400 font-mono text-[11px] uppercase tracking-widest font-bold block">Abschnitt 01 &bull; Signatur-Philosophie</span>
+                    <h3 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight">
+                      Die Philosophie der "Lebenskunst"
+                    </h3>
+                    <p className="text-zinc-200 text-sm md:text-base font-light leading-relaxed">
+                      Kunst ist mehr als reine Repräsentation – sie ist gebundene Lebensenergie und stetiger Dialog zwischen Zeit, Natur und Form. In der Serie **"Lebenskunst"** verschmelzen jahrhundertealtes Eichenholz, 24k Blattgold, altmeisterliche Öl-Lasurtechnik und veredeltes Epoxidharz zu zeitgenössischen Resonanzkörpern.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-xs">
+                      <div className="bg-zinc-900/80 backdrop-blur-md p-4 rounded-xl border border-amber-500/20">
+                        <span className="text-amber-400 font-bold block text-sm">24k Blattgold</span>
+                        <span className="text-zinc-400 block mt-1">Echtes Blattgold für zeitlose Lichtreflexionen.</span>
+                      </div>
+                      <div className="bg-zinc-900/80 backdrop-blur-md p-4 rounded-xl border border-amber-500/20">
+                        <span className="text-amber-400 font-bold block text-sm">Naturmaterialien</span>
+                        <span className="text-zinc-400 block mt-1">Historisches Eichenholz & Edelharz-Kompositionen.</span>
+                      </div>
+                      <div className="bg-zinc-900/80 backdrop-blur-md p-4 rounded-xl border border-amber-500/20">
+                        <span className="text-amber-400 font-bold block text-sm">Öl & Lasur</span>
+                        <span className="text-zinc-400 block mt-1">Altmeisterliche Schichtmalerei im Chiaroscuro.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SECTION 02: DIGITALES WERKVERZEICHNIS (WV-LISTE & VIDEO-LOOPS) */}
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <div>
+                      <span className="text-amber-400 font-mono text-[11px] uppercase tracking-widest font-bold">Abschnitt 02</span>
+                      <h3 className="text-2xl font-serif font-bold text-white">Digitales Werkverzeichnis (WV-Katalog)</h3>
+                      <p className="text-zinc-400 text-xs mt-1">Säuberlich dokumentiertes Archiv mit echten MP4-Video-Animationen</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredArtworks.map(art => (
+                      <motion.div
+                        key={art.id}
+                        whileHover={{ y: -4 }}
+                        className="bg-zinc-950/85 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/40 transition-all shadow-xl flex flex-col justify-between"
+                      >
+                        <div className="relative aspect-[4/3] bg-zinc-900 overflow-hidden cursor-pointer" onClick={() => openSubpage(art)}>
+                          {art.video ? (
+                            <video src={art.video} loop muted autoPlay playsInline className="w-full h-full object-cover" />
+                          ) : (
+                            <img src={art.image} alt={art.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                          )}
+                          
+                          <div className="absolute top-3 left-3">
+                            <span className="font-mono text-[10px] font-bold bg-zinc-950/90 text-amber-300 px-2 py-0.5 rounded border border-amber-500/40">
+                              {art.wvNr}
+                            </span>
+                          </div>
+
+                          <div className="absolute top-3 right-3">
+                            <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase border shadow-md ${
+                              art.status === 'Verfügbar' ? 'bg-emerald-950/90 text-emerald-300 border-emerald-500/40' :
+                              art.status === 'Reserviert' ? 'bg-amber-950/90 text-amber-300 border-amber-500/40' :
+                              'bg-zinc-900/90 text-zinc-400 border-zinc-700'
+                            }`}>
+                              {art.status}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                          <div>
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-[11px] font-semibold text-amber-400/90 uppercase tracking-widest">{art.year}</span>
+                              <span className="text-xs text-zinc-400">{art.dimensions}</span>
+                            </div>
+                            <h4 className="text-lg font-serif font-bold text-white mt-1 cursor-pointer hover:text-amber-300 transition-colors" onClick={() => openSubpage(art)}>{art.title}</h4>
+                            <p className="text-zinc-400 text-xs mt-1 font-light line-clamp-2">{art.medium}</p>
+                          </div>
+
+                          <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                            <div>
+                              <span className="text-[10px] text-zinc-500 uppercase font-medium">Wert / Status</span>
+                              <p className="text-amber-300 font-serif font-bold text-lg">{art.price}</p>
+                            </div>
+
+                            <button
+                              onClick={() => openSubpage(art)}
+                              className="px-3.5 py-2 rounded-lg text-xs font-semibold bg-zinc-900 hover:bg-amber-400 hover:text-zinc-950 text-amber-300 border border-amber-500/30 transition-all flex items-center gap-1.5"
+                            >
+                              <span>Werkakte ansehen</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* BLAU LEUCHTENDE KONTROLLLEISTE UNTER DEM WERKVERZEICHNIS */}
+                <div className="my-8 p-6 rounded-2xl bg-blue-950/80 backdrop-blur-md border border-blue-500/50 shadow-2xl shadow-blue-950/50 space-y-4">
+                  <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-200 text-xs font-bold uppercase tracking-wider">
+                        <RotateCw className="w-3.5 h-3.5 animate-spin text-blue-400" />
+                        <span>Auto-Rotation 45s ({videoIndex + 1}/{HERO_ANIMATION_PLAYLIST.length})</span>
+                      </div>
+                      <span className="text-xs text-blue-200/80 font-medium hidden sm:inline">&bull; Interaktive Animation-Steuerung</span>
+                    </div>
+
+                    {/* Blue Control Buttons */}
+                    <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                      {/* Brightness Pills */}
+                      <div className="flex items-center gap-1 text-[11px] bg-blue-900/60 p-1 rounded-xl border border-blue-400/30">
+                        <Sun className="w-3.5 h-3.5 text-blue-300 ml-1.5" />
+                        <button
+                          onClick={() => setBackgroundMode('ultra')}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${backgroundMode === 'ultra' ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white'}`}
+                        >
+                          Extrem Hell ☀️
+                        </button>
+                        <button
+                          onClick={() => setBackgroundMode('vibrant')}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${backgroundMode === 'vibrant' ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white'}`}
+                        >
+                          Leuchtend ✨
+                        </button>
+                      </div>
+
+                      {/* Retro Filter Pills */}
+                      <div className="flex items-center gap-1 text-[11px] bg-blue-900/60 p-1 rounded-xl border border-blue-400/30">
+                        <span className="text-blue-300 font-mono font-bold text-[10px] ml-1.5 uppercase">Effekt:</span>
+                        <button
+                          onClick={() => setFilterMode('none')}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${filterMode === 'none' ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white'}`}
+                        >
+                          HD Video 🎬
+                        </button>
+                        <button
+                          onClick={() => setFilterMode('ascii')}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${filterMode === 'ascii' ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white'}`}
+                        >
+                          ASCII Art 🔤
+                        </button>
+                        <button
+                          onClick={() => setFilterMode('pixel')}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${filterMode === 'pixel' ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white'}`}
+                        >
+                          Pixel 8-Bit 👾
+                        </button>
+                        <button
+                          onClick={() => setFilterMode('matrix')}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${filterMode === 'matrix' ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white'}`}
+                        >
+                          Matrix ⚡
+                        </button>
+                      </div>
+
+                      {/* Video Selector Pills */}
+                      <div className="flex flex-wrap items-center gap-1 text-[11px] bg-blue-900/60 p-1 rounded-xl border border-blue-400/30">
+                        {HERO_ANIMATION_PLAYLIST.map((item, idx) => (
+                          <button
+                            key={item.url}
+                            onClick={() => {
+                              setVideoIndex(idx)
+                              setIsAutoRotate(false)
+                            }}
+                            className={`px-2.5 py-1 rounded-lg transition-all ${videoIndex === idx ? 'bg-blue-500 text-white font-bold shadow-md shadow-blue-500/40' : 'text-blue-200 hover:text-white bg-blue-950/40'}`}
+                          >
+                            {item.title}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SECTION 03: INTERAKTIVER KUNST-RASTER (VIRTUELLE ATELIERWAND - DEEPER DOWN) */}
+                <div className="space-y-4 pt-4">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
                     <div>
-                      <span className="text-amber-400 font-mono text-[11px] uppercase tracking-widest font-bold">Abschnitt 01</span>
+                      <span className="text-blue-400 font-mono text-[11px] uppercase tracking-widest font-bold">Abschnitt 03</span>
                       <h3 className="text-2xl font-serif font-bold text-white flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-amber-400" /> Interaktiver Kunst-Raster & Dynamic Layout
+                        <Sparkles className="w-5 h-5 text-blue-400" /> Interaktiver Kunst-Raster & Dynamic Layout
                       </h3>
                     </div>
                     <span className="text-xs text-zinc-400">Klick auf ein Werk öffnet die individuelle Werkakte</span>
                   </div>
 
                   {/* Archive Search Bar & Filter Controls Container */}
-                  <div className="space-y-4 bg-zinc-950/90 backdrop-blur-md p-5 rounded-2xl border border-amber-500/30 shadow-2xl">
+                  <div className="space-y-4 bg-zinc-950/90 backdrop-blur-md p-5 rounded-2xl border border-blue-500/30 shadow-2xl">
                     <div className="relative">
-                      <Search className="w-4 h-4 text-amber-400 absolute left-4 top-3.5" />
+                      <Search className="w-4 h-4 text-blue-400 absolute left-4 top-3.5" />
                       <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Im Werkverzeichnis suchen (z.B. 'WV-2026-001', 'Öl', 'Portrait', '2025', 'Nussbaum')..."
-                        className="w-full bg-zinc-900/90 border border-zinc-800 rounded-xl pl-11 pr-4 py-3 text-xs md:text-sm text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 shadow-inner"
+                        className="w-full bg-zinc-900/90 border border-zinc-800 rounded-xl pl-11 pr-4 py-3 text-xs md:text-sm text-white placeholder-zinc-400 focus:outline-none focus:border-blue-400 shadow-inner"
                       />
                       {searchQuery && (
                         <button
@@ -674,37 +781,37 @@ export function App() {
                       <div className="flex flex-wrap items-center gap-2">
                         <button
                           onClick={() => setActiveCategory('all')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'all' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'all' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
                           Alle Archivwerke ({ARTWORKS_DATA.length})
                         </button>
                         <button
                           onClick={() => setActiveCategory('lebenskunst')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'lebenskunst' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'lebenskunst' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
                           Lebenskunst (Signatur)
                         </button>
                         <button
                           onClick={() => setActiveCategory('portrait')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'portrait' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'portrait' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
                           Öl-Portraitmalerei
                         </button>
                         <button
                           onClick={() => setActiveCategory('abstrakt')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'abstrakt' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'abstrakt' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
                           Abstrakte Malerei
                         </button>
                         <button
                           onClick={() => setActiveCategory('anatomie')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'anatomie' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'anatomie' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
                           Anatomie-Skizzen
                         </button>
                         <button
                           onClick={() => setActiveCategory('epoxid')}
-                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'epoxid' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+                          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeCategory === 'epoxid' ? 'bg-blue-500 text-white font-bold' : 'bg-zinc-900/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
                         >
                           Epoxidharz & Resin
                         </button>
@@ -716,7 +823,7 @@ export function App() {
                             type="checkbox"
                             checked={showFrames}
                             onChange={(e) => setShowFrames(e.target.checked)}
-                            className="w-4 h-4 accent-amber-500 rounded cursor-pointer"
+                            className="w-4 h-4 accent-blue-500 rounded cursor-pointer"
                           />
                           <span>Galerie-Rahmen</span>
                         </label>
@@ -725,7 +832,7 @@ export function App() {
                   </div>
 
                   {/* Dynamic Frame Grid Container */}
-                  <div className="w-full h-[680px] sm:h-[750px] bg-zinc-950/70 p-4 rounded-2xl border border-white/10 shadow-inner backdrop-blur-md">
+                  <div className="w-full h-[680px] sm:h-[750px] bg-zinc-950/70 p-4 rounded-2xl border border-blue-500/30 shadow-inner backdrop-blur-md">
                     <DynamicFrameLayout
                       frames={frames}
                       showFrames={showFrames}

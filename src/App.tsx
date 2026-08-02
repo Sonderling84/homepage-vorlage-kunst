@@ -35,6 +35,7 @@ import {
 import { DynamicFrameLayout } from '@/components/ui/dynamic-frame-layout'
 import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
 import { AsciiPixelFilter } from '@/components/ui/ascii-pixel-filter'
+import { FlipGallery } from '@/components/ui/flip-gallery'
 import { ARTWORKS_DATA, type Artwork } from '@/data/artworks'
 import { ArtworkDetailPage } from '@/components/ArtworkDetailPage'
 import { DedicatedGallerySubpage } from '@/components/DedicatedGallerySubpage'
@@ -999,6 +1000,9 @@ export function App() {
                       onSelectFrame={handleSelectFrame}
                     />
                   </div>
+
+                  {/* 3D Kinematik Flip-Gallery Component */}
+                  <FlipGallery />
                 </div>
 
                 {/* SECTION 2: "LEBENSKUNST" MANIFEST & MATERIALFORSCHUNG (SPECIAL GOLD HIGHLIGHT) */}

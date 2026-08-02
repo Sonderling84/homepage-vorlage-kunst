@@ -30,7 +30,8 @@ import {
   RotateCw,
   Sun,
   Globe,
-  Tv
+  Tv,
+  Menu
 } from 'lucide-react'
 import { DynamicFrameLayout } from '@/components/ui/dynamic-frame-layout'
 import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
@@ -100,6 +101,7 @@ export function App() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
   const [showFrames, setShowFrames] = useState(false)
   const [copiedIntegration, setCopiedIntegration] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-oel-acryl' | 'galerie-lebenskunst' | 'galerie-anatomie' | 'galerie-digitalkunst' | 'galerie-epoxid' | 'galerie-animationen' | 'galerie-handwerk' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
   
   // Video Playlist Auto-Rotation State (Rotates every 45 seconds)
@@ -290,8 +292,17 @@ export function App() {
               </p>
             </div>
           </div>
+          
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-xl bg-zinc-900 border border-amber-500/30 text-amber-400 hover:text-white transition-all focus:outline-none"
+            aria-label="Menü öffnen"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
 
-          {/* Nav Tabs */}
+          {/* Nav Tabs (Desktop) */}
           <div className="hidden md:flex items-center gap-1 bg-zinc-900/90 backdrop-blur-md p-1.5 rounded-full border border-white/10 text-xs font-medium">
             <button
               onClick={() => {
@@ -346,11 +357,93 @@ export function App() {
               }}
               className={`px-4 py-2 rounded-full transition-all ${activeTab === 'integration' ? 'bg-amber-400 text-zinc-950 font-semibold shadow-md' : 'text-zinc-300 hover:text-white'}`}
             >
-              Integration
+              Einbinden
             </button>
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* Mobile Dropdown Menu Drawer */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="md:hidden absolute top-full left-0 w-full bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 px-6 py-4 space-y-2 font-medium"
+              >
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('gallery')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'gallery' && !viewingSubpage ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/90 text-zinc-200'}`}
+                >
+                  <span>Werkschau & Katalog</span>
+                  <Sparkles className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('hbk')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'hbk' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-amber-500/10 text-amber-300 border border-amber-500/30'}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <School className="w-4 h-4" />
+                    <span>Bewerbung HBK</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('commissions')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'commissions' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/90 text-zinc-200'}`}
+                >
+                  <span>Auftragsarbeiten nach Maß</span>
+                  <PenTool className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('archive')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'archive' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/90 text-zinc-200'}`}
+                >
+                  <span>Werkverzeichnis (WV-Nr.)</span>
+                  <BookOpen className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('about')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'about' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/90 text-zinc-200'}`}
+                >
+                  <span>Künstler & Vita</span>
+                  <User className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('integration')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'integration' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-900/90 text-zinc-200'}`}
+                >
+                  <span>Website-Einbindung</span>
+                  <Code2 className="w-4 h-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => {
                 const firstAvailable = ARTWORKS_DATA.find(a => a.status === 'Verfügbar') || ARTWORKS_DATA[0]

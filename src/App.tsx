@@ -31,12 +31,14 @@ import {
   Sun,
   Globe,
   Tv,
-  Menu
+  Menu,
+  Brain
 } from 'lucide-react'
 import { DynamicFrameLayout } from '@/components/ui/dynamic-frame-layout'
 import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
 import { AsciiPixelFilter } from '@/components/ui/ascii-pixel-filter'
 import { FlipGallery } from '@/components/ui/flip-gallery'
+import { HomepageBrainViewer } from '@/components/HomepageBrainViewer'
 import { ARTWORKS_DATA, type Artwork } from '@/data/artworks'
 import { ArtworkDetailPage } from '@/components/ArtworkDetailPage'
 import { DedicatedGallerySubpage } from '@/components/DedicatedGallerySubpage'
@@ -102,7 +104,7 @@ export function App() {
   const [showFrames, setShowFrames] = useState(false)
   const [copiedIntegration, setCopiedIntegration] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-oel-acryl' | 'galerie-lebenskunst' | 'galerie-anatomie' | 'galerie-digitalkunst' | 'galerie-epoxid' | 'galerie-animationen' | 'galerie-handwerk' | 'hbk' | 'commissions' | 'about' | 'integration'>('gallery')
+  const [activeTab, setActiveTab] = useState<'gallery' | 'archive' | 'galerie-oel-acryl' | 'galerie-lebenskunst' | 'galerie-anatomie' | 'galerie-digitalkunst' | 'galerie-epoxid' | 'galerie-animationen' | 'galerie-handwerk' | 'hbk' | 'commissions' | 'about' | 'integration' | 'brain'>('gallery')
   
   // Video Playlist Auto-Rotation State (Rotates every 45 seconds)
   const [videoIndex, setVideoIndex] = useState(0)
@@ -359,6 +361,16 @@ export function App() {
             >
               Einbinden
             </button>
+            <button
+              onClick={() => {
+                closeSubpage()
+                setActiveTab('brain')
+              }}
+              className={`px-4 py-2 rounded-full transition-all flex items-center gap-1.5 ${activeTab === 'brain' ? 'bg-amber-400 text-zinc-950 font-bold shadow-md shadow-amber-500/20' : 'text-amber-300 hover:text-white bg-amber-500/10 border border-amber-500/30'}`}
+            >
+              <Brain className="w-3.5 h-3.5" />
+              <span>🧠 Homepage Brain</span>
+            </button>
           </div>
 
           {/* Mobile Dropdown Menu Drawer */}
@@ -380,6 +392,20 @@ export function App() {
                 >
                   <span>Werkschau & Katalog</span>
                   <Sparkles className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    closeSubpage()
+                    setActiveTab('brain')
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${activeTab === 'brain' ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-amber-500/10 text-amber-300 border border-amber-500/30'}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Brain className="w-4 h-4" />
+                    <span>🧠 Homepage Brain (Obsidian)</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => {
@@ -1287,6 +1313,11 @@ export function App() {
                 onSelectArtwork={(art) => openSubpage(art)}
                 onOpenInquiry={(art) => { setSelectedArtwork(art); setShowInquiryForm(true); }}
               />
+            )}
+
+            {/* TAB: OBSIDIAN & GOOGLE DRIVE HOMEPAGE BRAIN */}
+            {activeTab === 'brain' && (
+              <HomepageBrainViewer />
             )}
 
             {/* TAB 3: AUFTRAGSARBEITEN */}

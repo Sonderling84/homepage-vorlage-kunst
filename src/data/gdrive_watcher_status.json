@@ -1,0 +1,115 @@
+{
+  "lastScan": "2026-08-06T13:38:37.151Z",
+  "activeFoldersCount": 7,
+  "totalFilesDetected": 8,
+  "folders": [
+    {
+      "name": "Gallerie 01 Digitale Kunst",
+      "category": "digitalkunst",
+      "galleryNo": "No. 4",
+      "fileCount": 0
+    },
+    {
+      "name": "Gallerie 02 Ol portrat acryl auf leinwand",
+      "category": "oel-acryl",
+      "galleryNo": "No. 1",
+      "fileCount": 0
+    },
+    {
+      "name": "Gallerie 03 Resin Art ) Verkauf=",
+      "category": "epoxid",
+      "galleryNo": "No. 5",
+      "fileCount": 0
+    },
+    {
+      "name": "Gallerie 04 Anatomie",
+      "category": "anatomie",
+      "galleryNo": "No. 3",
+      "fileCount": 0
+    },
+    {
+      "name": "Gallewrie 05 Skizzen",
+      "category": "anatomie",
+      "galleryNo": "No. 3",
+      "fileCount": 0
+    },
+    {
+      "name": "Gallerie 06 Lebenskunst",
+      "category": "lebenskunst",
+      "galleryNo": "No. 2",
+      "fileCount": 0
+    },
+    {
+      "name": "Animationen",
+      "category": "animationen",
+      "galleryNo": "No. 6",
+      "fileCount": 8
+    }
+  ],
+  "recentMedia": [
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "2726F096-BD8D-44A6-866B-BDBAB880FAA5.mov",
+      "sizeMb": "3.34",
+      "mtime": "2026-07-12T01:00:17.018Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "3b4df56d-3b7c-4c3b-adb8-a4e7afb54a25-u1_trimmed.MP4",
+      "sizeMb": "0.84",
+      "mtime": "2026-07-26T13:05:48.948Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "6AFE3608-B79C-437C-9B84-47C94323045D.mov",
+      "sizeMb": "3.85",
+      "mtime": "2026-07-12T00:53:39.364Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "976F6C34-8BF7-44F5-AEAC-F0762AC30C07.mov",
+      "sizeMb": "4.18",
+      "mtime": "2026-07-12T01:00:07.290Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "Clip2Comic-2024-09-09-14-50-27.MP4",
+      "sizeMb": "1.74",
+      "mtime": "2026-07-26T13:04:55.820Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "copy_88449E85-F23B-42BD-8C34-7DD1842C2E3B.MP4",
+      "sizeMb": "6.77",
+      "mtime": "2026-07-26T13:00:48.310Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "glam_video_magic.MP4",
+      "sizeMb": "17.61",
+      "mtime": "2026-07-26T14:49:09.720Z"
+    },
+    {
+      "folder": "Animationen",
+      "galleryNo": "No. 6",
+      "category": "animationen",
+      "filename": "IMG_0244.MP4",
+      "sizeMb": "10.22",
+      "mtime": "2026-07-26T13:01:36.439Z"
+    }
+  ]
+}

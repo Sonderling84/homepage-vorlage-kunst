@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "brain:sync": "node scripts/generate_obsidian_brain.mjs"
+    "brain:sync": "node scripts/generate_obsidian_brain.mjs",
+    "brain:watch": "node scripts/watch_gdrive_folders.mjs"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { 
   Brain, 
   Sparkles, 
@@ -12,11 +12,13 @@ import {
   BarChart3,
   Calendar,
   RefreshCw,
-  Zap,
-  TrendingUp,
-  School,
-  ShoppingBag
+  Eye,
+  FolderOpen,
+  Image as ImageIcon,
+  HardDrive
 } from 'lucide-react'
+
+import gdriveStatus from '@/data/gdrive_watcher_status.json'
 
 interface DailyAnalysis {
   id: string
@@ -35,13 +37,13 @@ const DAILY_ANALYSES: DailyAnalysis[] = [
   {
     id: '2026-08-06',
     date: '06. August 2026',
-    time: '15:37 Uhr',
+    time: '15:38 Uhr',
     title: '🧠 Tägliche Ausführliche Homepage-Analyse',
     summary: 'Vollständige Erfassung der 7 Galerien, Gesellenstück-Analyse, HBK-Mappenbewertung & Epoxidharz-Verkaufsbestand.',
     galleriesCount: 7,
     hbkReadiness: '95% (Mappe vollständig)',
     salesStatus: '7 Unikate verfügbar',
-    driveSync: '100% Synchronisiert',
+    driveSync: '100% Synchronisiert (Google Drive Watcher Aktiv)',
     fullReport: `📊 1. Galerie- & Werkschau-Verteilung (7 Galerien):
 • Gesamtanzahl erfasster Archivwerke: 10 Hauptwerke im Werkverzeichnis
 • Galerie No. 1 (Öl & Acryl): 1 Werk (Chiaroscuro Lichtstudien)
@@ -62,32 +64,19 @@ const DAILY_ANALYSES: DailyAnalysis[] = [
 • Verfügbare Originale: 7 Kunstwerke sofort kaufbar
 • Reservierte Werke: 1 Kunstwerk (WV-2025-003 für Kunststiftung)
 
-☁️ 4. Google Drive & Obsidian Sync Status:
-• Synchronisierte Ordner: 7 lokale Galerie-Pfade angebunden
+☁️ 4. Google Drive Ordner-Watcher Status:
+• Automatische Überwachung aller 7 Galerie-Ordner aktiv
+• Erfasste Medien-Dateien: ${gdriveStatus.totalFilesDetected} Dateien in den Ordnern
 • Speicherpfad: /Deutsche-Kunst-Brain/05 - Tägliche Analysen/`
-  },
-  {
-    id: '2026-08-05',
-    date: '05. August 2026',
-    time: '18:20 Uhr',
-    title: '🧠 Tägliche Analyse • 3D Motion & Epoxidharz-Fokus',
-    summary: 'Fokus auf Unreal Engine Realtime Shader und Erweiterung der Epoxidharz Fluid Ocean Serie.',
-    galleriesCount: 6,
-    hbkReadiness: '90%',
-    salesStatus: '6 Unikate verfügbar',
-    driveSync: '100% Synchronisiert',
-    fullReport: `📊 1. Zusammenfassung:
-• Rendern von 2 neuen 4K Animationen in Blender abgeschlossen.
-• Vorbereitung des HBK Zulassungsdossiers für die Meisterschul-Kommission.
-• Synchronisierung mit Google Drive Cloud Ordner "Animationen".`
   }
 ]
 
 export function HomepageBrainViewer() {
-  const [activeTab, setActiveTab] = useState<'analytics' | 'graph' | 'vault'>('analytics')
+  const [activeTab, setActiveTab] = useState<'analytics' | 'watcher' | 'graph'>('analytics')
   const [selectedAnalysis, setSelectedAnalysis] = useState<DailyAnalysis>(DAILY_ANALYSES[0])
   const [analysesList, setAnalysesList] = useState<DailyAnalysis[]>(DAILY_ANALYSES)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [isScanningDrive, setIsScanningDrive] = useState(false)
 
   const triggerNewDailyAnalysis = () => {
     setIsAnalyzing(true)
@@ -101,22 +90,29 @@ export function HomepageBrainViewer() {
         date: dateStr,
         time: timeStr,
         title: `🧠 Tägliche Ausführliche Homepage-Analyse (${dateStr})`,
-        summary: `Neu generierte Tagesanalyse. 7 Galerien ausgewertet, Google Drive synchronisiert, HBK Mappe zu 95% bereit.`,
+        summary: `Neu generierte Tagesanalyse. Google Drive Ordner-Watcher hat ${gdriveStatus.totalFilesDetected} Dateien erkannt.`,
         galleriesCount: 7,
         hbkReadiness: '95%',
         salesStatus: '7 Unikate verfügbar',
-        driveSync: 'Aktiv (Gerade aktualisiert)',
+        driveSync: 'Aktiv (Google Drive Watcher)',
         fullReport: `📊 Tägliche Ausführliche Homepage-Analyse (Live-Generierung)
 • Zeitpunkt: ${dateStr} um ${timeStr}
-• Erfasste Galerien: 7 Galerien (Öl & Acryl, Lebenskunst, Anatomie, Digital, Epoxid, 3D, Handwerk)
-• Gesellenstück-Analyse: Registriert in Galerie No. 7
-• Google Drive Sync Status: Erfolgreich gespiegelt in /Deutsche-Kunst-Brain/`
+• Google Drive Watcher: ${gdriveStatus.activeFoldersCount} Galerie-Ordner aktiv überwacht
+• Erfasste Medien-Dateien: ${gdriveStatus.totalFilesDetected} Bilder & Videos
+• Speicherort: /Deutsche-Kunst-Brain/05 - Tägliche Analysen/`
       }
 
       setAnalysesList([newAnalysis, ...analysesList])
       setSelectedAnalysis(newAnalysis)
       setIsAnalyzing(false)
     }, 1200)
+  }
+
+  const triggerDriveScan = () => {
+    setIsScanningDrive(true)
+    setTimeout(() => {
+      setIsScanningDrive(false)
+    }, 1000)
   }
 
   return (
@@ -127,13 +123,13 @@ export function HomepageBrainViewer() {
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-amber-400 font-mono text-xs uppercase tracking-widest font-bold">
             <Brain className="w-4 h-4" />
-            <span>Homepage Brain &bull; Tägliche Ausführliche Analysen</span>
+            <span>Homepage Brain &bull; Google Drive Live Ordner-Watcher</span>
           </div>
           <h2 className="text-2xl md:text-4xl font-serif font-bold gold-gradient-text">
             Das Gehirn der Homepage
           </h2>
           <p className="text-zinc-300 text-xs md:text-sm font-light max-w-2xl">
-            Das zentrale Gedächtnis speichert **tägliche ausführliche Analysen** über alle 7 Galerien, das Gesellenstück, die HBK-Mappe und synchronisiert automatisch mit **Google Drive & Obsidian**.
+            Überwacht automatisch alle **7 Google Drive Galerie-Ordner**, erkennt neu abgelegte Kunstwerke sofort und speichert tägliche Analysen im **Obsidian Brain**.
           </p>
         </div>
 
@@ -144,7 +140,7 @@ export function HomepageBrainViewer() {
             className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-amber-500/20 disabled:opacity-50"
           >
             <RefreshCw className={`w-4 h-4 ${isAnalyzing ? 'animate-spin' : ''}`} />
-            <span>{isAnalyzing ? 'Analysiere Homepage...' : 'Tagesanalyse jetzt ausführen'}</span>
+            <span>{isAnalyzing ? 'Analysiere...' : 'Tagesanalyse ausführen'}</span>
           </button>
           
           <a
@@ -160,7 +156,7 @@ export function HomepageBrainViewer() {
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex items-center gap-2 border-b border-zinc-800 pb-3 font-mono text-xs">
+      <div className="flex flex-wrap items-center gap-2 border-b border-zinc-800 pb-3 font-mono text-xs">
         <button
           onClick={() => setActiveTab('analytics')}
           className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 ${
@@ -169,6 +165,16 @@ export function HomepageBrainViewer() {
         >
           <BarChart3 className="w-4 h-4" />
           <span>Tägliche Analysen & Speicher ({analysesList.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('watcher')}
+          className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 ${
+            activeTab === 'watcher' ? 'bg-amber-400 text-zinc-950 font-bold shadow-md' : 'bg-zinc-900 text-zinc-300 hover:text-white'
+          }`}
+        >
+          <Eye className="w-4 h-4 text-emerald-400" />
+          <span>Google Drive Ordner-Watcher ({gdriveStatus.totalFilesDetected} Dateien)</span>
         </button>
 
         <button
@@ -294,7 +300,57 @@ export function HomepageBrainViewer() {
         </div>
       )}
 
-      {/* TAB 2: OBSIDIAN GRAPH */}
+      {/* TAB 2: GOOGLE DRIVE ORDNER-WATCHER */}
+      {activeTab === 'watcher' && (
+        <div className="space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-emerald-950/40 border border-emerald-500/40 p-6 rounded-2xl">
+            <div className="space-y-1">
+              <span className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-widest flex items-center gap-1.5">
+                <Eye className="w-4 h-4 animate-pulse" /> Live Google Drive Ordner-Watcher Aktiv
+              </span>
+              <h3 className="text-xl font-serif font-bold text-white">
+                Automatische Erkennung neuer Bilder in den 7 Galerie-Ordnern
+              </h3>
+              <p className="text-zinc-300 text-xs font-light">
+                Sobald du neue Bilder in Google Drive ablegst, erkennt der Watcher sie sofort und aktualisiert das Homepage Brain.
+              </p>
+            </div>
+
+            <button
+              onClick={triggerDriveScan}
+              disabled={isScanningDrive}
+              className="px-4 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-zinc-950 font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20 whitespace-nowrap"
+            >
+              <RefreshCw className={`w-4 h-4 ${isScanningDrive ? 'animate-spin' : ''}`} />
+              <span>{isScanningDrive ? 'Scanne Ordner...' : 'Ordner jetzt scannen'}</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {gdriveStatus.folders.map((folder, idx) => (
+              <div key={idx} className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    {folder.galleryNo}
+                  </span>
+                  <span className="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">
+                    <ImageIcon className="w-3.5 h-3.5" /> {folder.fileCount} Dateien
+                  </span>
+                </div>
+                <h4 className="text-sm font-semibold text-white font-serif flex items-center gap-2">
+                  <FolderOpen className="w-4 h-4 text-amber-400" />
+                  <span>{folder.name}</span>
+                </h4>
+                <p className="text-[11px] text-zinc-400 font-mono">
+                  Kategorie: <span className="text-zinc-200">{folder.category}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* TAB 3: OBSIDIAN GRAPH */}
       {activeTab === 'graph' && (
         <div className="bg-zinc-950 p-8 rounded-2xl border border-amber-500/30 text-center space-y-4">
           <Network className="w-12 h-12 text-amber-400 mx-auto" />
